@@ -182,13 +182,31 @@ select * from dw.calendar_dim;
 
 
 
+-- MANAGERS
+
+DROP TABLE if exists dw.manager_dim cascade;
+
+CREATE TABLE dw.manager_dim
+(
+ manager_id integer NOT NULL,
+ manager    varchar(30) NOT NULL,
+ region    varchar(20) NOT NULL,
+ CONSTRAINT PK_manager PRIMARY KEY ( manager_id )
+);
+
+-- insert people
+insert into dw.manager_dim 
+select 100+row_number() over() as manager_id, person, region from stg.people sp;
+
+select * from dw.manager_dim
+
 
 
 --SALES 
 
 --drop and creating a table
-drop table if exists dw.sales_fact cascade;
-CREATE TABLE dw.sales_fact
+drop table if exists dw.sales cascade;
+CREATE TABLE dw.sales
 (
  sales_id      serial NOT NULL,
  cust_id integer NOT NULL,
@@ -202,9 +220,11 @@ CREATE TABLE dw.sales_fact
  profit      numeric(21,16) NOT NULL,
  quantity    int4 NOT NULL,
  discount    numeric(4,2) NOT NULL,
+ region		varchar(20) NOT null,
+ manager_id    integer NOT null,
  CONSTRAINT PK_sales_fact PRIMARY KEY (sales_id));
 
-insert into dw.sales_fact 
+insert into dw.sales
 select
 	 100+row_number() over() as sales_id
 	 ,cd.cust_id
@@ -218,22 +238,31 @@ select
 	 ,o.profit
      ,o.quantity
 	 ,o.discount
+	 ,sp.region
+	 ,dm.manager_id
 from stg.orders o
 inner join dw.shipping_dim s on o.ship_mode = s.shipping_mode
 inner join dw.geo_dim g on o.postal_code = g.postal_code and o.country=g.country and o.city = g.city and o.state = g.state --City Burlington doesn't have postal code
 inner join dw.product_dim p on o.product_name = p.product_name and o.subcategory=p.subcategory and o.category=p.category and o.product_id=p.product_id 
 inner join dw.customer_dim cd on cd.customer_id=o.customer_id and cd.customer_name=o.customer_name and o.segment = cd.segment 
+inner join stg.people sp on sp.region = o.region
+inner join dw.manager_dim dm on dm.manager=sp.person and dm.region = sp.region
+ 
+
+
 
 
 --do you get 9994rows?
-select count(*) from dw.sales_fact sf
-inner join dw.shipping_dim s on sf.ship_id=s.ship_id
-inner join dw.geo_dim g on sf.geo_id=g.geo_id
-inner join dw.product_dim p on sf.prod_id=p.prod_id
-inner join dw.customer_dim cd on sf.cust_id=cd.cust_id;
+select count(*) from dw.sales ds
+inner join dw.shipping_dim s on ds.ship_id=s.ship_id
+inner join dw.geo_dim g on ds.geo_id=g.geo_id
+inner join dw.product_dim p on ds.prod_id=p.prod_id
+inner join dw.customer_dim cd on ds.cust_id=cd.cust_id
+inner join dw.manager_dim dm on ds.manager_id=dm.manager_id
+inner join stg.people sp on ds.region=sp.region 
 
-select * from dw.sales_fact sf
 
+select * from dw.sales ds
 
 
 
