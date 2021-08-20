@@ -228,8 +228,8 @@ insert into dw.sales
 select
 	 100+row_number() over() as sales_id
 	 ,cd.cust_id
-	 ,to_char(order_date,'yyyymmdd')::int as  order_date_id
-	 ,to_char(ship_date,'yyyymmdd')::int as  ship_date_id
+	 ,to_char( o.order_date,'yyyymmdd')::int as  order_date_id
+	 ,to_char(o.ship_date,'yyyymmdd')::int as  ship_date_id
 	 ,p.prod_id
 	 ,s.ship_id
 	 ,g.geo_id
@@ -263,6 +263,3 @@ inner join stg.people sp on ds.region=sp.region
 
 
 select * from dw.sales ds
-
-
-
