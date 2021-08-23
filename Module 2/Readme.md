@@ -1,7 +1,7 @@
-Задание для модуля 2
+Модуль 2
 =====================
 
-Устанавливаем PostgreSQL на локальный компьютер. Загрузка данных в БД. Запросы к БД
+Установка PostgreSQL на локальный компьютер. Загрузка данных в БД. Запросы к БД
 ---------------------
 
 ### Запросы для загрузки данных
@@ -11,11 +11,11 @@
 :heavy_check_mark: [2.3. table_returns.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/table_returns.sql)  
 
  
-### Делаем SQL запросы к БД
+### SQL запросы к БД
 
 :heavy_check_mark: [2.3. Metric_queryes.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/Metric_queryes.sql)
  
-Рисуем модель данных в SQLdbm для создания новой БД
+Модель данных в SQLdbm для создания новой БД
 ---------------------
 
 **Концептуальная модель**
@@ -33,14 +33,14 @@
 
 ![Physical_model](https://user-images.githubusercontent.com/87261879/130416812-12721e75-d1e8-4cc9-8351-94131f2accbb.png)
 
-Создаём БД в AWS RDS и загружаем данные
+Создание БД в AWS RDS и загрузка данных
 ---------------------
 
-- Создаем учетную запись в AWS.
+- Создание учетной записи в AWS.
  
-- Используя сервис AWS RDS создаём БД PostgreSQL и настраиваем к ней доступ.
+- Создание БД PostgreSQL на облачном сервисе AWS RDS и настройка доступа.
  
-- Подключаемся к новой БД через SQL клиент (DBeaver) и загружаем данные из модуля 2.3 (Superstore dataset):  
+- Подключение к новой БД через SQL клиент (DBeaver) и загружка данных из модуля 2.3 (Superstore dataset):  
    :heavy_check_mark: В staging (схема БД stg) —  [stg.orders.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg.orders.sql) и [stg.people.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg.people.sql)  
    :heavy_check_mark: В Business Layer (схема БД dw) — [stg_to_dw.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg_to_dw.sql)
  
