@@ -43,7 +43,10 @@
 :heavy_check_mark:Sales per region  
 
 
-- Создание дашборда [Sample - Superstore.xls](https://github.com/abai-rocket/DE-101/blob/main/Module%201/Superstore%20Dashboard.xlsx)  
+- Создание дашборда [Sample - Superstore.xls](https://github.com/abai-rocket/DE-101/blob/main/Module%201/Superstore%20Dashboard.xlsx) 
+![excel](https://user-images.githubusercontent.com/87261879/141258628-48e4eafb-15f8-4fdb-b9e6-744b546e1324.png)
+
+ 
  
 
 
