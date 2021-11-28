@@ -40,7 +40,7 @@
  
 - Создание БД PostgreSQL на облачном сервисе AWS RDS и настройка доступа.
  
-- Подключение к новой БД через SQL клиент (DBeaver) и загружка данных из модуля 2.3 (Superstore dataset):  
+- Подключение к новой БД через SQL клиент (DBeaver) и загрузка данных из модуля 2.3 (Superstore dataset):  
    :heavy_check_mark: В staging (схема БД stg) —  [stg.orders.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg.orders.sql) и [stg.people.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg.people.sql)  
    :heavy_check_mark: В Business Layer (схема БД dw) — [stg_to_dw.sql](https://github.com/abai-rocket/DE-101/blob/main/Module%202/stg_to_dw.sql)
  
